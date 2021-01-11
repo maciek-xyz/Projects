@@ -1,5 +1,10 @@
 package Lesson9;
 
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Collections;
+import java.util.List;
+
 public enum DayOfWeek {
 
 
@@ -37,22 +42,24 @@ public enum DayOfWeek {
         return !workingDay;
     }
 
-    public static String getWeekends() {
+    public static List<DayOfWeek> getWeekends() {
+        List<DayOfWeek> weekendList = new ArrayList<>();
         for(DayOfWeek dayOfWeek: values()) {
             if (!dayOfWeek.isWorkingDay()){
-                System.out.print(dayOfWeek + ", ");;
+                weekendList.add(dayOfWeek);
             }
         }
-        return "";
+        return weekendList;
     }
 
-    public static String getWorkingDay(){
+    public static List<DayOfWeek> getWorkingDay(){
+        List<DayOfWeek> workingList = new ArrayList<>();
         for(DayOfWeek dayOfWeek: values()) {
             if (dayOfWeek.isWorkingDay()){
-                System.out.print(dayOfWeek + ", ");
+                workingList.add(dayOfWeek);
             }
         }
-        return "";
+        return workingList;
     }
 
     public static DayOfWeek fromEnglishName(String englishName) {
