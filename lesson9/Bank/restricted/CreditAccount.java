@@ -1,6 +1,6 @@
-package Lesson8.Bank;
+package Lesson8.Bank.restricted;
 
-import Lesson9.BoxesAndShelves.Box;
+import Lesson8.Bank.restricted.Account;
 
 import java.math.BigDecimal;
 
@@ -15,14 +15,14 @@ public class CreditAccount extends Account {
 
 
     @Override
-    BigDecimal withdraw(BigDecimal amount) {
+    public BigDecimal withdraw(BigDecimal amount) throws Exception {
         BigDecimal x = BigDecimal.valueOf(-1);
         BigDecimal newLimit = limit.multiply(x);
-        super.withdraw(amount);
-        if (super.getBalance().compareTo(newLimit) == -1) {
-            return null;
+        BigDecimal newBalance = super.withdraw(amount);
+        if (newBalance.compareTo(newLimit) >= 0) {
+            return newBalance;
         } else {
-            return super.getBalance();
+            throw new Exception("Error");
         }
     }
 }

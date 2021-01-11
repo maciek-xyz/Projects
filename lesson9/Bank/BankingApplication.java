@@ -1,5 +1,10 @@
 package Lesson8.Bank;
 
+import Lesson8.Bank.restricted.Account;
+import Lesson8.Bank.restricted.Bank;
+import Lesson8.Bank.restricted.CreditAccount;
+import Lesson8.Bank.restricted.DebitAccount;
+
 import java.math.BigDecimal;
 
 public class BankingApplication {
@@ -7,12 +12,12 @@ public class BankingApplication {
 //        initBanking();
 //    }
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws Exception {
         initBanking();
 
     }
 
-    private static void initBanking() {
+    private static void initBanking() throws Exception {
         Account accountDebit1 = new DebitAccount("111111", BigDecimal.valueOf(20000));
         Account accountCredit1 = new CreditAccount("222222", BigDecimal.valueOf(40000), BigDecimal.valueOf(100_000));
 
@@ -38,20 +43,22 @@ public class BankingApplication {
         mBank.withDraw("111111",BigDecimal.valueOf(5000));
         nestBank.withDraw("222222",BigDecimal.valueOf(10000));
 
+        accountDebit1.withdraw(BigDecimal.valueOf(36000));
+        accountCredit1.withdraw(BigDecimal.valueOf(50000));
+
         System.out.println(accountDebit1.getBalance());
         System.out.println(accountCredit1.getBalance());
 
-        accountCredit1.withdraw(BigDecimal.valueOf(40000));
+        accountDebit1.withdraw(BigDecimal.valueOf(10000));
+        accountCredit1.withdraw(BigDecimal.valueOf(62000));
+
+        System.out.println(accountDebit1.getBalance());
         System.out.println(accountCredit1.getBalance());
 
-        accountCredit1.withdraw(BigDecimal.valueOf(25000));
+        accountCredit1.withdraw(BigDecimal.valueOf(50000));
         System.out.println(accountCredit1.getBalance());
 
-        accountCredit1.withdraw(BigDecimal.valueOf(86000));
-        System.out.println(accountCredit1.getBalance());
 
-        accountCredit1.withdraw(BigDecimal.valueOf(14000));
-        System.out.println(accountCredit1.getBalance());
 
 
 

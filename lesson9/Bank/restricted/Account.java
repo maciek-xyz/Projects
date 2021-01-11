@@ -1,4 +1,4 @@
-package Lesson8.Bank;
+package Lesson8.Bank.restricted;
 
 import java.math.BigDecimal;
 
@@ -16,22 +16,19 @@ public abstract class Account {
         balance = balance.add(amount);
     }
 
-    BigDecimal withdraw(BigDecimal amount) {
-        balance = balance.subtract(amount);
-        return balance;
+    public BigDecimal withdraw(BigDecimal amount) throws Exception {
+            balance = balance.subtract(amount);
+            return balance;
     }
-    BigDecimal settingPercents(BigDecimal percents) {
+    public BigDecimal settingPercents(BigDecimal percents) {
         percentage = percents;
         return percentage;
     }
 
-    BigDecimal applyPercents(){
+    public BigDecimal applyPercents(){
         return balance = balance.add(balance.multiply(percentage));
     }
 
-//    BigDecimal getMoney(BigDecimal amount){
-//        return null;
-//    }
 
     public String getNumber() {
         return number;

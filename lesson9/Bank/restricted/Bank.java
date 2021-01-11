@@ -1,4 +1,6 @@
-package Lesson8.Bank;
+package Lesson8.Bank.restricted;
+
+import Lesson8.Bank.restricted.Account;
 
 import java.math.BigDecimal;
 
@@ -26,7 +28,7 @@ public class Bank{
         account.topUp(amount);
     }
 
-    public BigDecimal withDraw(String accountNumber, BigDecimal amount){
+    public BigDecimal withDraw(String accountNumber, BigDecimal amount) throws Exception{
         return account.withdraw(amount);
     }
 }

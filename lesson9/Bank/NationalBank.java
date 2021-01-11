@@ -1,5 +1,7 @@
 package Lesson8.Bank;
 
+import Lesson8.Bank.restricted.Bank;
+
 import java.util.ArrayList;
 import java.util.List;
 
