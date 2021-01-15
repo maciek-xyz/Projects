@@ -1,5 +1,22 @@
 package Lesson9.BoxesAndShelves;
 
-public class Shelf<T> extends Box {
-    
+
+import java.util.ArrayList;
+import java.util.List;
+
+public class Shelf <Box>{
+
+    private List<Box> items;
+
+    public Shelf() {
+        items = new ArrayList<>();
+    }
+
+    void addBox(Box box){
+        items.add(box);
+    }
+    List<Box> getItem() {
+        return items;
+    }
+
 }
