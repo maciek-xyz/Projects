@@ -1,8 +1,11 @@
 package Lesson8;
 
+import com.sun.source.tree.Tree;
 
-import java.util.*;
-
+import java.util.Collections;
+import java.util.Comparator;
+import java.util.List;
+import java.util.TreeSet;
 
 public class OnlineStoreDemo {
     public static void main(String[] args) {
@@ -19,44 +22,30 @@ public class OnlineStoreDemo {
         Item microphone = new Item("Microphone", 40);
         Item laptop = new Item("Laptop", 3100);
 
-        Map<String, Integer> c = new TreeMap<>();
-        c.put(monitor.getName(), monitor.getPrice());
-        c.put(computer.getName(), computer.getPrice());
-        c.put(keyboard.getName(), keyboard.getPrice());
-        c.put(mouse.getName(), mouse.getPrice());
-        c.put(printer.getName(), printer.getPrice());
-        c.put(xbox.getName(), xbox.getPrice());
-        c.put(ps4.getName(), ps4.getPrice());
-        c.put(ps5.getName(), ps5.getPrice());
-        c.put(headphones.getName(), headphones.getPrice());
-        c.put(microphone.getName(), microphone.getPrice());
-        c.put(laptop.getName(), laptop.getPrice());
-
-        System.out.println("=========================================");
-
-        Map<String, Integer> catalogue = new TreeMap<>();
-        catalogue.putAll(c);
-        System.out.println(catalogue); //sorted by item name
-
-        System.out.println("========================================");
-
-        catalogue = new TreeMap<>(Collections.reverseOrder());
-        catalogue.putAll(c);
-        System.out.println(catalogue); //sorted by item name by reverse order
-
-        System.out.println("=======================================");
+        TreeSet<Item> catalogue = new TreeSet<>(List.of(monitor, computer, keyboard, mouse, printer, xbox, ps4, ps5,
+                headphones, microphone, laptop));
 
 
-        Comparator<String> comparator = new ItemByPrice<>((TreeMap<String, Integer>) catalogue);
-        TreeMap<String, Integer> newCatalogue = new TreeMap<String, Integer>(comparator);
-        newCatalogue.putAll(catalogue);
-        System.out.println(newCatalogue); // sorted from the cheapest
+        System.out.println("============SORTED BY ITEM NAME===============");
+        TreeSet<Item> itemName = new TreeSet<>();
+        itemName.addAll(catalogue);
+        System.out.println(itemName);
 
-        System.out.println("========================================");
+        System.out.println("============SORTED BY ITEM NAME IN REVERSE ORDER=================");
+        TreeSet<Item> itemNameReverse = new TreeSet<>();
+        itemNameReverse.addAll(catalogue);
+        System.out.println(itemNameReverse.descendingSet());
 
-        newCatalogue = new TreeMap<>(comparator.reversed());
-        newCatalogue.putAll(catalogue);
-        System.out.println(newCatalogue); // sorted from the most expensive
+        System.out.println("============SORTED BY PRICE FROM THE CHEAPEST=================");
+        TreeSet<Item> itemsFromTheCheapest = new TreeSet<>(new ItemByPriceComparator());
+        itemsFromTheCheapest.addAll(catalogue);
+        System.out.println(itemsFromTheCheapest);
+
+        System.out.println("============SORTED BY PRICE FROM THE MOST EXPENSIVE=================");
+        TreeSet<Item> itemsFromTheMostExp = new TreeSet<>(new ItemByPriceComparator().reversed());
+        itemsFromTheMostExp.addAll(catalogue);
+        System.out.println(itemsFromTheMostExp);
+
 
     }
 }
