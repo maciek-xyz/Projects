@@ -12,7 +12,14 @@ public final class Car {
         this.manufacturer = manufacturer;
         this.model = model;
         this.engine = new Engine(engine.getType(), engine.getHorsePower(), engine.getVolume());
-        this.wheels = Collections.unmodifiableList(wheels);
+        this.wheels = new ArrayList<>();
+        for (Wheel wheel : wheels) {
+            this.wheels.add(deepCopy(wheel));
+        }
+    }
+
+    public Wheel deepCopy(Wheel wheel) {
+        return new Wheel(wheel.getRadius(), wheel.getWidth());
     }
 
     public String getManufacturer() {
