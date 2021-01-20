@@ -1,11 +1,15 @@
 package Lesson8.Bank.restricted;
 
+import Lesson8.Bank.NonSufficientFundsException;
+import Lesson8.Bank.ReachedCreditLimitException;
 import Lesson8.Bank.restricted.Account;
 
 import java.math.BigDecimal;
 
 public class CreditAccount extends Account {
+    Account account;
     BigDecimal limit;
+    BigDecimal balance1;
 
 
     public CreditAccount(String number, BigDecimal balance, BigDecimal limit) {
@@ -15,14 +19,17 @@ public class CreditAccount extends Account {
 
 
     @Override
-    public BigDecimal withdraw(BigDecimal amount) throws Exception {
-        BigDecimal x = BigDecimal.valueOf(-1);
-        BigDecimal newLimit = limit.multiply(x);
-        BigDecimal newBalance = super.withdraw(amount);
-        if (newBalance.compareTo(newLimit) >= 0) {
-            return newBalance;
+    public BigDecimal withDraw(BigDecimal amount) throws Exception {
+        balance1 = getBalance();
+        BigDecimal newLimit = limit.multiply(BigDecimal.valueOf(-1));
+        balance1 = balance1.subtract(amount);
+        if (balance1.compareTo(newLimit) >= 0) {
+            setBalance(balance1);
+            return balance1;
         } else {
-            throw new Exception("Error");
+            throw new ReachedCreditLimitException("Current balance: " + getBalance() + ", Limit: " + limit);
         }
     }
 }
+
+
