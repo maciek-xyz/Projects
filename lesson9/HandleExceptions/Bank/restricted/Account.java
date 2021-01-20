@@ -21,11 +21,10 @@ public abstract class Account {
     }
 
     public BigDecimal withDraw(BigDecimal amount) throws Exception {
-        if (balance.compareTo(amount) >= 1) {
+        if (balance.compareTo(amount) >= 0) {
             balance = balance.subtract(amount);
             return balance;
         }else {
-            //balance = balance.subtract(amount); //!!!!!!!!!!!!!
             throw new NonSufficientFundsException("Current balance: " + balance);
         }
 
@@ -46,6 +45,10 @@ public abstract class Account {
 
     public BigDecimal getBalance() {
         return balance;
+    }
+
+     void setBalance(BigDecimal balance) {
+        this.balance = balance;
     }
 
     public BigDecimal getPercentage() {
