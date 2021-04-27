@@ -1,0 +1,2 @@
+Create class hierarchy: Airplane, Transport, Car, Bus, Train, Bicycle, Tram, Public Transport, Scooter, Motorbike
+Think carefully which class should be parent to another.
