@@ -1,0 +1,23 @@
+We are going to implement simple banking application.
+We need to have the next:
+- Account with possibility:
+* top up
+* withdraw
+* setting percents
+* apply percents on balance
+* getting current balance
+* getting account number
+- Debit account:
+* does not allow <0 balance
+* apply percents on balance -> should increase balance on percents difference
+- Credit account:
+* has credit limit
+* apply percents on balance -> in case of negative balance should decrease it on percents difference
+- Bank with next properties:
+* name
+* accounts
+* Bank can topUp own accounts
+* Bank can withDraw own accounts
+- National Bank which:
+* contains all registered banks
+* can return Bank by name
