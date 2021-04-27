@@ -1,0 +1,15 @@
+Let's say we have mutable classes Engine and Wheel:
+Engine
+String type;
+int horsePower;
+int volume;
+Wheel
+int radius;
+int width;
+Create immutable class Car
+Car
+String manufacturer;
+String model;
+Engine engine;
+List<Wheel> wheels;
+Ensure that class Car really immutable, even with mutable classes Engine and Wheel.
